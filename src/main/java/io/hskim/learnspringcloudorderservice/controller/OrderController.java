@@ -40,10 +40,7 @@ public class OrderController {
   }
 
   @GetMapping(value = "/{orderId}")
-  public OrderResponseDto getOrderByOrderId(
-    @PathVariable String serviceType,
-    @PathVariable String orderId
-  ) {
+  public OrderResponseDto getOrderByOrderId(@PathVariable String orderId) {
     return orderService.getOrderByOrderId(orderId);
   }
 }
