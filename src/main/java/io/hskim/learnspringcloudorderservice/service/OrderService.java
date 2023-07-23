@@ -20,7 +20,18 @@ public class OrderService {
   private final OrderRepo orderRepo;
 
   public OrderResponseDto postOrder(OrderRequestDto orderRequestDto) {
-    return orderRepo.save(OrderEntity.builder().build()).toDto();
+    return orderRepo
+      .save(
+        OrderEntity
+          .builder()
+          .qty(orderRequestDto.getQty())
+          .unitPrice(orderRequestDto.getUnitPrice())
+          .totalPrice(orderRequestDto.getQty() * orderRequestDto.getUnitPrice())
+          .userId(orderRequestDto.getUserId())
+          .catalogId(orderRequestDto.getCatalogId())
+          .build()
+      )
+      .toDto();
   }
 
   public Page<OrderResponseDto> getOrderListByUserId(

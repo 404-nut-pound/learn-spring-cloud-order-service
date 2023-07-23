@@ -22,9 +22,8 @@ public class OrderController {
 
   private final OrderService orderService;
 
-  @PostMapping(value = "/{userId}")
+  @PostMapping
   public OrderResponseDto postOrder(
-    @PathVariable String userId,
     @Validated(
       value = { ValidatedPostGroup.class }
     ) @RequestBody OrderRequestDto orderRequestDto
