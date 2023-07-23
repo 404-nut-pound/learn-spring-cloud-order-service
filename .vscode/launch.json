@@ -9,7 +9,8 @@
       "name": "LearnSpringCloudOrderServiceApplication",
       "request": "launch",
       "mainClass": "io.hskim.learnspringcloudorderservice.LearnSpringCloudOrderServiceApplication",
-      "projectName": "learn-spring-cloud-order-service"
+      "projectName": "learn-spring-cloud-order-service",
+      "args": "--spring.application.name=order-service-1"
     }
   ]
 }
