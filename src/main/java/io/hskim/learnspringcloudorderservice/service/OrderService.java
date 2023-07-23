@@ -38,9 +38,7 @@ public class OrderService {
     String userId,
     Pageable pageable
   ) {
-    return orderRepo
-      .findByUserIdContains(userId, pageable)
-      .map(OrderEntity::toDto);
+    return orderRepo.findByUserId(userId, pageable).map(OrderEntity::toDto);
   }
 
   public OrderResponseDto getOrderByOrderId(String orderId) {
