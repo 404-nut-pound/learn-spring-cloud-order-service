@@ -19,8 +19,10 @@ public class OrderService {
 
   private final OrderRepo orderRepo;
 
+  private final OrderProducerService orderProducerService;
+
   public OrderResponseDto postOrder(OrderRequestDto orderRequestDto) {
-    return orderRepo
+    OrderResponseDto orderResponseDto = orderRepo
       .save(
         OrderEntity
           .builder()
@@ -32,6 +34,13 @@ public class OrderService {
           .build()
       )
       .toDto();
+
+    orderProducerService.postProducer(
+      "example-catalog-topic",
+      orderResponseDto
+    );
+
+    return orderResponseDto;
   }
 
   public Page<OrderResponseDto> getOrderListByUserId(
