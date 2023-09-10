@@ -35,10 +35,13 @@ public class OrderService {
       )
       .toDto();
 
+    // CatalogService 연계
     orderProducerService.postProducer(
       "example-catalog-topic",
       orderResponseDto
     );
+    // Connector 연계
+    orderProducerService.postProducerConnector("orders", orderResponseDto);
 
     return orderResponseDto;
   }
