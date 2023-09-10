@@ -4,11 +4,11 @@ server:
 spring:
   application:
     name: order-service
-  datasource:
-    url: jdbc:h2:mem:demo #메모리 기반
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+  # datasource:
+  #   url: jdbc:h2:mem:demo #메모리 기반
+  #   username: sa
+  #   password:
+  #   driver-class-name: org.h2.Driver
   h2:
     console:
       settings:
@@ -21,6 +21,13 @@ spring:
         '[show_sql]': false
         '[format_sql]': false
         '[default_batch_fetch_size]': 16
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      name: ecommerce
+    refresh:
+      extra-refreshable: com.zaxxer.hikari.HikariDataSource
 
 eureka:
   client:
