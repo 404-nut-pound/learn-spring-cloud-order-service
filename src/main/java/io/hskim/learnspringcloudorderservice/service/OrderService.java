@@ -7,6 +7,7 @@ import io.hskim.learnspringcloudorderservice.repo.OrderRepo;
 import jakarta.ws.rs.NotFoundException;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
 
   private final OrderRepo orderRepo;
@@ -50,6 +52,7 @@ public class OrderService {
     String userId,
     Pageable pageable
   ) {
+    log.info("Order service getOrderListByUserId");
     return orderRepo.findByUserId(userId, pageable).map(OrderEntity::toDto);
   }
 
